@@ -1,7 +1,3 @@
-export const mainService = {
-    sayHello,
-    locationPreview
-}
 
 class locationPreview {
     static nextId = 101;
@@ -20,4 +16,14 @@ class locationPreview {
     }
 }
 
+export const mainService = {
+    getLocations,
+    locationPreview
+}
 
+
+var gLocation = [];
+
+function getLocations() {
+    return gLocation
+}  
