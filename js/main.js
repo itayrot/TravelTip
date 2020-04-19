@@ -1,35 +1,62 @@
 
 import { mainService } from './tt-service.js'
-import { axios } from '../lib/axios.js'
-
-
 
 window.addEventListener('load', onInit)
 
 
 function onInit() {
-    renderMap()
+    initMap()
     console.log('check')
-    mainService.sayHello()
 }
 
-console.log(mainService)
-mainService.sayHello
+
+
+function initMap() {
+    var shoham = {lat: 32.0004845, lng: 34.9465419};
+    var map = new google.maps.Map(
+     document.getElementById('map'), {zoom: 16, center: shoham});
+    var marker = new google.maps.Marker({position: shoham, map: map});
 
 
 
-function renderMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
-    });
+    map.addListener('center_changed', function() {
+
+        window.setTimeout(function() {
+          map.panTo(marker.getPosition());
+        }, 3000);
+      });
 
 
-}
-getMap()
-function getMap() {
-    axios.get("https://maps.googleapis.com/maps/api/js?key=AIzaSyBurNOtTpe3sJQQmeKq8VnUK_i7lo_ry_M&callback=initMap")
-        .then(data => console.log('data', data))
-        .catch(err => console.log('err', err))
+      map.addListener('click' , function(mapsMouseEvent) {
+        var infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+        console.log(infoWindow)
+        
 
-}
+        map = document.getElementById('map'), {zoom: 16, center: infoWindow.content};
+        infoWindow.setContent(mapsMouseEvent.latLng.toString());
+        // infoWindow.open(map);
+      })
+
+      
+
+
+
+
+
+      // To add the marker to the map, call setMap();
+      marker.setMap(map);
+  }
+
+
+
+        // // Configure the click listener.
+        // map.addListener('click', function(mapsMouseEvent) {
+        //     // Close the current InfoWindow.
+        //     infoWindow.close();
+  
+        //     // Create a new InfoWindow.
+        //     infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+        //     infoWindow.setContent(mapsMouseEvent.latLng.toString());
+        //     infoWindow.open(map);
+        //   });
+        // }
