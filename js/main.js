@@ -2,6 +2,9 @@
 import { mainService } from './tt-service.js'
 import { locationPreview } from './cmps/locationPreview.js'
 
+export const mainJS = {
+    renderMap
+}
 
 
 window.addEventListener('load', onInit)
@@ -10,7 +13,9 @@ window.addEventListener('load', onInit)
 
 function onInit() {
     initMap()
+    handleWithSearch()
 }
+
 
 
 
@@ -41,6 +46,13 @@ function initMap() {
 
 }
 
+function renderMap(latlngObj){
+    new google.maps.Map(document.getElementById('map'), { zoom: 16, center: latlngObj });
+}
+
+
+
+
 function renderTable(address) {
     const elTable = document.querySelector('.map-info')
 
@@ -57,4 +69,14 @@ function onDeleteRow() {
 
 function onUpdateRow() {
 
+}
+
+
+
+
+function handleWithSearch() {
+    console.log('check')
+    var inputSearch = document.querySelector('.inputSearch').value
+    var button = document.querySelector('.search-button')
+    button.addEventListener('click', mainService.getLocationByInput(inputSearch))
 }
