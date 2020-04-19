@@ -1,9 +1,11 @@
 export const mainService = {
-    sayHello
-}
-
-function sayHello(){
-    
+    getLocatoins
 }
 
 
+
+var gLocation = [];
+
+function getLocatoins(){
+    return gLocation
+}  
