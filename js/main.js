@@ -19,7 +19,7 @@ function initMap() {
 
 
     map.addListener('click', function (event) {
-        var locations = mainService.getLocatoins()
+        var locations = mainService.getLocations()
         geocoder.geocode({
             'latLng': event.latLng
         }, function (results, status) {
@@ -32,4 +32,17 @@ function initMap() {
         });
         new google.maps.Marker({ position: { lat: event.latLng.lat(), lng: event.latLng.lng() }, map: map });
     });
+
+
 }
+
+function renderTable() {
+    const elTable = document.querySelector('.map-info')
+    elTable.innerHTML = '';
+
+    const locationPreview = new locationPreview(info, onDeleteRow, onUpdateRow)
+    // const elRow = locationPreview.
+
+    // elTable.appendChild()
+}
+
