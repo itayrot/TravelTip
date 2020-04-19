@@ -7,7 +7,6 @@ window.addEventListener('load', onInit)
 
 function onInit() {
     initMap()
-    console.log('check')
 }
 
 
@@ -33,27 +32,4 @@ function initMap() {
         });
         new google.maps.Marker({ position: { lat: event.latLng.lat(), lng: event.latLng.lng() }, map: map });
     });
-
-
-
-
-
-
-
-    // To add the marker to the map, call setMap();
-    marker.setMap(map);
 }
-
-
-
-        // // Configure the click listener.
-        // map.addListener('click', function(mapsMouseEvent) {
-        //     // Close the current InfoWindow.
-        //     infoWindow.close();
-
-        //     // Create a new InfoWindow.
-        //     infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
-        //     infoWindow.setContent(mapsMouseEvent.latLng.toString());
-        //     infoWindow.open(map);
-        //   });
-        // }
